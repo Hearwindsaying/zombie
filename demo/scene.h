@@ -166,12 +166,14 @@ private:
 	void setPDE() {
 		float maxLength = this->bbox.extent().maxCoeff();
 		pde.dirichlet = [this, maxLength](const Vector2& x) -> float {
-			Vector2 uv = (x - this->bbox.pMin) / maxLength;
-			return this->dirichletBoundaryValue->get(uv)[0];
+			return x.x() + 1;
+			/*Vector2 uv = (x - this->bbox.pMin) / maxLength;
+			return this->dirichletBoundaryValue->get(uv)[0];*/
 		};
 		pde.neumann = [this, maxLength](const Vector2& x) -> float {
-			Vector2 uv = (x - this->bbox.pMin) / maxLength;
-			return this->neumannBoundaryValue->get(uv)[0];
+			return 0;
+			/*Vector2 uv = (x - this->bbox.pMin) / maxLength;
+			return this->neumannBoundaryValue->get(uv)[0];*/
 		};
 		pde.dirichletDoubleSided = [this, maxLength](const Vector2& x, bool _) -> float {
 			Vector2 uv = (x - this->bbox.pMin) / maxLength;

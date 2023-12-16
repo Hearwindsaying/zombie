@@ -1,10 +1,12 @@
 {
 	"solverType": "bvc",
 	"solver": {
-		"boundaryCacheSize": 16,
-		"domainCacheSize": 0,
+		"boundaryCacheSize": 512,
+		"domainCacheSize": 1,
 		"nWalksForCachedSolutionEstimates": 1,
-		"nWalksForCachedGradientEstimates": 64,
+		"nWalksForCachedGradientEstimates": 256,
+		"disableGradientAntitheticVariates": true,
+		"disableGradientControlVariates": false,
 		"maxWalkLength": 1024,
 		"epsilonShell": 1e-3,
 		"minStarRadius": 1e-3,
@@ -14,7 +16,7 @@
 		"ignoreSource": true
 	},
 	"scene": {
-		"boundary": "../../demo/scenes/engine/data/square_geometry.obj",
+		"boundary": "../../demo/scenes/engine/data/Square.obj",
 		"isNeumann": "../../demo/scenes/engine/data/square_is_neumann.pfm",
 		"dirichletBoundaryValue": "../../demo/scenes/engine/data/square_dirichlet_bc_value.pfm",
 		"neumannBoundaryValue": "../../demo/scenes/engine/data/square_neumann_bc_value.pfm",
