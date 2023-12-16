@@ -1,0 +1,33 @@
+{
+	"solverType": "bvc",
+	"solver": {
+		"boundaryCacheSize": 16,
+		"domainCacheSize": 0,
+		"nWalksForCachedSolutionEstimates": 1,
+		"nWalksForCachedGradientEstimates": 64,
+		"maxWalkLength": 1024,
+		"epsilonShell": 1e-3,
+		"minStarRadius": 1e-3,
+		"radiusClampForKernels": 0,
+		"ignoreDirichlet": false,
+		"ignoreNeumann": true,
+		"ignoreSource": true
+	},
+	"scene": {
+		"boundary": "../../demo/scenes/engine/data/square_geometry.obj",
+		"isNeumann": "../../demo/scenes/engine/data/square_is_neumann.pfm",
+		"dirichletBoundaryValue": "../../demo/scenes/engine/data/square_dirichlet_bc_value.pfm",
+		"neumannBoundaryValue": "../../demo/scenes/engine/data/square_neumann_bc_value.pfm",
+		"sourceValue": "../../demo/scenes/engine/data/square_source_value.pfm"
+	},
+	"output": {
+		"solutionFile": "../../demo/scenes/engine/solutions/square-bvc.pfm",
+		"gridRes": 256,
+		"boundaryDistanceMask": 1e-2,
+		"saveDebug": false,
+		"saveColormapped": false,
+		"colormap": "turbo",
+		"colormapMinVal": 0.0,
+		"colormapMaxVal": 1.1
+	}
+}

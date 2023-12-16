@@ -5,6 +5,7 @@ import numpy as np
 import os
 from shapely.geometry import LinearRing, Polygon
 from svgpathtools import svg2paths, Line
+from functools import reduce 
 
 def path_to_obj(path, n_points_per_segment):
     '''
@@ -61,7 +62,7 @@ def path_to_obj(path, n_points_per_segment):
 
     return np.array(v), np.array(l), props
 
-def normalize(path_v):
+def normalize_vertex_loc(path_v):
     '''
     Normalize vertex locations (in place) across all paths.
 
@@ -196,7 +197,7 @@ def svg_to_obj(svg_path, obj_path, normalize, use_ccw, auto_orient_curves, n_poi
         path_v[i], path_l[i], path_props[i] = path_to_obj(path, n_points_per_segment)
 
     if normalize:
-        path_v = normalize(path_v)
+        path_v = normalize_vertex_loc(path_v)
 
     orient_curves(path_v, path_l, use_ccw)
 

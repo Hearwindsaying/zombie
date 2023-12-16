@@ -109,7 +109,7 @@ private:
 			for (Vector2& v : vertices) v /= radius;
 		}
 
-		bbox = zombie::computeBoundingBox(vertices, true, 1.0);
+		bbox = zombie::computeBoundingBox<2>(vertices, true, 1.0);
 	}
 
 	void separateBoundaries() {

@@ -17,3 +17,6 @@ list(APPEND ZOMBIE_DEMO_DEPS_INCLUDES ${CMAKE_CURRENT_SOURCE_DIR}/deps/nlohmann)
 add_executable(demo demo.cpp ${ZOMBIE_DEMO_SRC_FILES})
 target_include_directories(demo PUBLIC ${ZOMBIE_DEMO_DEPS_INCLUDES})
 target_link_libraries(demo zombie)
+target_compile_definitions(demo PRIVATE
+    _USE_MATH_DEFINES
+)

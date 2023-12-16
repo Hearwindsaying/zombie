@@ -168,6 +168,7 @@ public:
 	// returns scene aggregate
 	const fcpw::Aggregate<3>* getSceneAggregate() {
 		fcpw::SceneData<3> *sceneData = scene.getSceneData();
+		if (sceneData->aggregateInstancePtrs.empty()) return sceneData->aggregate.get();
 		return sceneData->soups.size() > 0 ? sceneData->aggregateInstancePtrs[0] : nullptr;
 	}
 
