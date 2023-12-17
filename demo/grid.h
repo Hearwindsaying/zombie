@@ -143,9 +143,15 @@ void saveEvaluationGrid(const std::vector<zombie::EvaluationPoint<float, 2>>& ev
 
 			// solution data
 			float value = evalPts[idx].getEstimatedSolution();
+			solution->get(j, i) = Array3(value);
+			/*bool maskOutValue = (!inDomain && !isDoubleSided) ||
+								std::min(std::abs(dirichletDist), std::abs(neumannDist)) < boundaryDistanceMask;
+			solution->get(j, i) = Array3(maskOutValue ? 0.0f : value);*/
+
+			/*float value = evalPts[idx].getEstimatedSolution();
 			bool maskOutValue = (!inDomain && !isDoubleSided) ||
 								std::min(std::abs(dirichletDist), std::abs(neumannDist)) < boundaryDistanceMask;
-			solution->get(j, i) = Array3(maskOutValue ? 0.0f : value);
+			solution->get(j, i) = Array3(maskOutValue ? 0.0f : value);*/
 		}
 	}
 

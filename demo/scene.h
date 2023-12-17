@@ -166,7 +166,12 @@ private:
 	void setPDE() {
 		float maxLength = this->bbox.extent().maxCoeff();
 		pde.dirichlet = [this, maxLength](const Vector2& x) -> float {
-			return x.x() + 1;
+			//return x.x() + 1;
+
+			return x.x() < -0.5 && x.y() < -0.5 ?
+				(std::exp(1 - x.x()) * std::exp(1 - x.y() /* * std::sqrt(this->m_c)*/)) :
+				0;
+
 			/*Vector2 uv = (x - this->bbox.pMin) / maxLength;
 			return this->dirichletBoundaryValue->get(uv)[0];*/
 		};
