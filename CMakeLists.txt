@@ -47,13 +47,60 @@ list(APPEND ZOMBIE_DEPS_INCLUDES ${FCPW_ENOKI_INCLUDES})
 
 ################################################################################
 # build library
-add_library(${PROJECT_NAME} INTERFACE)
+set(INCLUDE_CORE
+    include/zombie/core/distributions.h
+    include/zombie/core/geometric_queries.h
+    include/zombie/core/pde.h
+    include/zombie/core/sampling.h
+)
+set(INCLUDE_POINTESTIMATION
+    include/zombie/point_estimation/common.h
+    include/zombie/point_estimation/reverse_walk_on_stars.h
+    include/zombie/point_estimation/walk_on_spheres.h
+    include/zombie/point_estimation/walk_on_stars.h
+)
+set(INCLUDE_UTILS_ROBIN_BVH
+    include/zombie/utils/robin_boundary_bvh/baseline.h
+    include/zombie/utils/robin_boundary_bvh/bvh.h
+    include/zombie/utils/robin_boundary_bvh/geometry.h
+    include/zombie/utils/robin_boundary_bvh/mbvh.h
+)
+set(INCLUDE_UTILS
+    include/zombie/utils/fcpw_boundary_handler.h
+    include/zombie/utils/nearest_neighbor_finder.h
+    include/zombie/utils/progress.h
+)
+set(INCLUDE_VARIANCE_REDUCTION
+    include/zombie/variance_reduction/boundary_sampler.h
+    include/zombie/variance_reduction/boundary_value_caching.h
+    include/zombie/variance_reduction/domain_sampler.h
+    include/zombie/variance_reduction/reverse_walk_splatter.h
+)
+
+add_library(${PROJECT_NAME} 
+INTERFACE 
+${INCLUDE_CORE}
+${INCLUDE_POINTESTIMATION}
+${INCLUDE_UTILS_ROBIN_BVH}
+${INCLUDE_UTILS}
+${INCLUDE_VARIANCE_REDUCTION}
+)
 target_include_directories(${PROJECT_NAME} INTERFACE $<BUILD_INTERFACE:${${PROJECT_NAME}_SOURCE_DIR}/include> ${ZOMBIE_DEPS_INCLUDES})
 target_link_libraries(${PROJECT_NAME} INTERFACE fcpw tbb)
 target_compile_features(${PROJECT_NAME} INTERFACE cxx_std_17)
 target_compile_definitions(${PROJECT_NAME} 
 INTERFACE 
     _USE_MATH_DEFINES
+)
+
+source_group("include/core" FILES ${INCLUDE_CORE})
+source_group("include/point_estimation" FILES ${INCLUDE_POINTESTIMATION})
+source_group("include/utils/robin_boundary_bvh" FILES ${INCLUDE_UTILS_ROBIN_BVH})
+source_group("include/utils/" FILES ${INCLUDE_UTILS})
+source_group("include/variance_reduction" FILES ${INCLUDE_VARIANCE_REDUCTION})
+
+set_target_properties(${PROJECT_NAME} PROPERTIES
+    FOLDER zombie
 )
 
 ################################################################################
