@@ -4,6 +4,8 @@
 
 #pragma once
 
+#define NOMINMAX
+
 #include <zombie/variance_reduction/boundary_sampler.h>
 #include <zombie/variance_reduction/domain_sampler.h>
 #include <zombie/point_estimation/reverse_walk_on_stars.h>

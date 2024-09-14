@@ -51,6 +51,10 @@ add_library(${PROJECT_NAME} INTERFACE)
 target_include_directories(${PROJECT_NAME} INTERFACE $<BUILD_INTERFACE:${${PROJECT_NAME}_SOURCE_DIR}/include> ${ZOMBIE_DEPS_INCLUDES})
 target_link_libraries(${PROJECT_NAME} INTERFACE fcpw tbb)
 target_compile_features(${PROJECT_NAME} INTERFACE cxx_std_17)
+target_compile_definitions(${PROJECT_NAME} 
+INTERFACE 
+    _USE_MATH_DEFINES
+)
 
 ################################################################################
 # build demo
